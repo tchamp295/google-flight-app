@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ArrowRight, Plane } from "lucide-react";
+import { ChevronDown, ArrowRight, Plane, Search } from "lucide-react";
 
 const formatTime = (timeString) => {
   if (!timeString || timeString === "Unknown") return "Unknown";
@@ -30,7 +30,6 @@ const calculateFlightDuration = (departureTime, arrivalTime) => {
   }
 };
 const FlightResults = ({ flights, loading }) => {
-
   const [sortCriteria, setSortCriteria] = useState("best");
   const [visibleFlights, setVisibleFlights] = useState(20);
 
@@ -83,11 +82,33 @@ const FlightResults = ({ flights, loading }) => {
 
   if (!flights.length) {
     return (
-      <div className="text-center py-12 w-full">
-        <Plane size={48} className="text-gray-400 mx-auto mb-4" />
-        <p className="text-lg text-gray-600">
-          No flights found. Try adjusting your search.
-        </p>
+      <div className="flex flex-col items-center justify-center w-full bg-gray-50 rounded-lg p-8 space-y-6 border border-gray-200 shadow-sm">
+        <div className="bg-blue-50 rounded-full p-5">
+          <Plane
+            size={60}
+            className="text-blue-500 opacity-80"
+            strokeWidth={1.5}
+          />
+        </div>
+
+        <div className="text-center">
+          <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+            No flights found
+          </h3>
+          <p className="text-gray-600 max-w-md mx-auto">
+            We couldn't find any flights matching your search criteria. Try
+            adjusting your dates, destinations, or filters.
+          </p>
+        </div>
+
+        <button className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors">
+          <Search size={20} />
+          <span>Modify Search</span>
+        </button>
+
+        <div className="text-xs text-gray-500 mt-4">
+          Tip: Check nearby airports or flexible dates for more options
+        </div>
       </div>
     );
   }
@@ -95,7 +116,7 @@ const FlightResults = ({ flights, loading }) => {
   return (
     <div className="w-full max-w-6xl mx-auto py-4">
       <div className="bg-white border-b pb-4">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center px-4 pt-4 space-y-3 sm:space-y-0">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center  pt-4 space-y-3 sm:space-y-0">
           <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
             <span className="text-sm font-medium text-gray-600">
               Best Matches
@@ -200,6 +221,6 @@ const FlightResults = ({ flights, loading }) => {
       )}
     </div>
   );
-}
+};
 
 export default FlightResults;

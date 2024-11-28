@@ -14,27 +14,27 @@ import {
 const navigationItems = [
   {
     href: "#",
-    icon: <Luggage className="h-5 w-5" />,
+    icon: <Luggage  />,
     label: "Travel",
   },
   {
     href: "#",
-    icon: <Compass className="h-5 w-5" />,
+    icon: <Compass  />,
     label: "Explore",
   },
   {
     href: "#",
-    icon: <Plane className="h-5 w-5" />,
+    icon: <Plane  />,
     label: "Flights",
   },
   {
     href: "#",
-    icon: <BedDouble className="h-5 w-5" />,
+    icon: <BedDouble  />,
     label: "Hotels",
   },
   {
     href: "#",
-    icon: <Home className="h-5 w-5" />,
+    icon: <Home  />,
     label: "Holiday Rentals",
   },
 ];
@@ -44,7 +44,7 @@ const NavItem = ({ href, icon, label }) => (
     href={href}
     className="flex text-sm font-medium items-center space-x-2 text-gray-700 border rounded-full py-2 px-3 hover:text-blue-600 hover:border-blue-500 transition-colors duration-200"
   >
-    {React.cloneElement(icon, { className: "h-5 w-5 text-blue-500" })}
+    {React.cloneElement(icon, { className: "h-4 w-4 text-blue-500" })}
     <span>{label}</span>
   </a>
 );
@@ -63,7 +63,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200 font-noto">
+    <header className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200 font-noto">
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <button

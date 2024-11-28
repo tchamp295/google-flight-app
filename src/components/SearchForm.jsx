@@ -157,7 +157,7 @@ const SearchForm = ({ onSearch }) => {
   return (
     <div className="font-roboto w-full">
       <div
-        className="w-full h-40 sm:h-60 bg-cover bg-center"
+        className="w-full h-32 sm:h-52 bg-cover bg-center"
         style={{
           backgroundImage: "url('./flights_nc_4.svg')",
         }}
@@ -222,7 +222,7 @@ const SearchForm = ({ onSearch }) => {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="pb-10">
+        <form onSubmit={handleSubmit} className="pb-6">
           {(tripType === "round" || tripType === "one-way") && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               <div className="flex flex-col">
