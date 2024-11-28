@@ -3,8 +3,7 @@ import SearchForm from "./components/SearchForm";
 import FlightResults from "./components/FlightResults";
 import Header from "./components/Header";
 import { fetchFlightData } from "./services/flightService";
-
-function App() {
+const App = () => {
   const [flights, setFlights] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

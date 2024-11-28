@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Search, Plus, Trash2 } from "lucide-react";
+const API_KEY = import.meta.env.VITE_RAPIDAPI_KEY;
 
-function SearchForm({ onSearch }) {
+const SearchForm = ({ onSearch }) => {
   const [tripType, setTripType] = useState("round");
   const [airports, setAirports] = useState([]);
   const [loadingAirports, setLoadingAirports] = useState(false);
@@ -41,8 +42,7 @@ function SearchForm({ onSearch }) {
           {
             method: "GET",
             headers: {
-              "x-rapidapi-key":
-                "b74dce785cmshcf5e5d1f1cc874dp1406b3jsn46438c37c10b",
+              "x-rapidapi-key": API_KEY,
               "x-rapidapi-host": "sky-scrapper.p.rapidapi.com",
             },
           }
@@ -82,20 +82,22 @@ function SearchForm({ onSearch }) {
   const handleMultiCityLegChange = (index, e) => {
     const { name, value } = e.target;
     const selectedAirport = airports.find((airport) => airport.skyId === value);
-  
+
     setMultiCityLegs((prevLegs) => {
       const updatedLegs = [...prevLegs];
       updatedLegs[index] = {
         ...updatedLegs[index],
         [name]: value,
         ...(name.includes("SkyId")
-          ? { [`${name.replace("SkyId", "EntityId")}`]: selectedAirport?.entityId || "" }
+          ? {
+              [`${name.replace("SkyId", "EntityId")}`]:
+                selectedAirport?.entityId || "",
+            }
           : {}),
       };
       return updatedLegs;
     });
   };
-  
 
   const addMultiCityLeg = () => {
     if (multiCityLegs.length < 5) {
@@ -133,15 +135,15 @@ function SearchForm({ onSearch }) {
           date: e.target.date.value,
         };
         break;
-        case "multi-city":
-          searchData = {
-            tripType,
-            passengers: formData.passengers,
-            travelClass: formData.travelClass,
-            multiCityLegs: multiCityLegs,
-          };
-          break;
-        
+      case "multi-city":
+        searchData = {
+          tripType,
+          passengers: formData.passengers,
+          travelClass: formData.travelClass,
+          multiCityLegs: multiCityLegs,
+        };
+        break;
+
         break;
       default:
         console.error("Invalid trip type");
@@ -326,10 +328,10 @@ function SearchForm({ onSearch }) {
                       To
                     </label>
                     <select
-                       name="destinationSkyId"
-                       value={leg.destinationSkyId}
-                       onChange={(e) => handleMultiCityLegChange(index, e)}
-                       required
+                      name="destinationSkyId"
+                      value={leg.destinationSkyId}
+                      onChange={(e) => handleMultiCityLegChange(index, e)}
+                      required
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     >
                       <option value="">Where to?</option>
@@ -347,14 +349,13 @@ function SearchForm({ onSearch }) {
                       Departure Date
                     </label>
                     <input
-  type="date"
-  name="date"
-  value={leg.date || ""}
-  onChange={(e) => handleMultiCityLegChange(index, e)}
-  required
-  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-/>
-
+                      type="date"
+                      name="date"
+                      value={leg.date || ""}
+                      onChange={(e) => handleMultiCityLegChange(index, e)}
+                      required
+                      className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    />
 
                     {multiCityLegs.length > 1 && (
                       <button
@@ -397,6 +398,6 @@ function SearchForm({ onSearch }) {
       </div>
     </div>
   );
-}
+};
 
 export default SearchForm;

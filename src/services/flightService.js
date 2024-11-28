@@ -1,4 +1,5 @@
-const API_KEY = "b74dce785cmshcf5e5d1f1cc874dp1406b3jsn46438c37c10b";
+const API_KEY = import.meta.env.VITE_RAPIDAPI_KEY;
+
 const BASE_URL = "https://sky-scrapper.p.rapidapi.com/api/v2/flights";
 
 async function fetchFlightData(searchParams) {
@@ -12,7 +13,7 @@ async function fetchFlightData(searchParams) {
     searchParams.date
   }&adults=${
     searchParams.passengers
-  }&cabinClass=${searchParams.travelClass.toLowerCase()}&sortBy=best&currency=USD&market=en-US&countryCode=US`;
+  }&cabinClass=${searchParams.travelClass.toLowerCase()}&currency=USD&market=en-US&countryCode=US`;
 
   try {
     const response = await fetch(url, {
