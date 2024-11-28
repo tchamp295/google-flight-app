@@ -73,7 +73,7 @@ const FlightResults = ({ flights, loading }) => {
 
   if (loading) {
     return (
-      <div className="w-full p-4">
+      <div className="w-full py-4">
         {[1, 2, 3].map((i) => (
           <div
             key={i}
@@ -122,7 +122,7 @@ const FlightResults = ({ flights, loading }) => {
 
   return (
     <div className="w-full max-w-6xl mx-auto py-4">
-      <div className="bg-white border-b pb-4">
+      <div className="bg-white  pb-4">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-4 space-y-3 sm:space-y-0">
           <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
             <span className="text-sm font-medium text-gray-600">
@@ -166,7 +166,7 @@ const FlightResults = ({ flights, loading }) => {
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2  ">
         {sortedFlights.slice(0, visibleFlights).map((flight, index) => (
           <div
             key={index}
