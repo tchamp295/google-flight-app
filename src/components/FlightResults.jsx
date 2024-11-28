@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { ChevronDown, ArrowRight, Plane, Search } from "lucide-react";
+import {
+  ChevronDown,
+  Tag,
+  ArrowRight,
+  Plane,
+  Search,
+  MoreHorizontal,
+} from "lucide-react";
 
 const formatTime = (timeString) => {
   if (!timeString || timeString === "Unknown") return "Unknown";
@@ -70,7 +77,7 @@ const FlightResults = ({ flights, loading }) => {
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            className="bg-gray-100 rounded-lg animate-pulse p-4 mb-2"
+            className="bg-gray-100 rounded-lg animate-pulse py-4 mb-2"
           >
             <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
             <div className="h-4 bg-gray-200 rounded w-1/2"></div>
@@ -116,7 +123,7 @@ const FlightResults = ({ flights, loading }) => {
   return (
     <div className="w-full max-w-6xl mx-auto py-4">
       <div className="bg-white border-b pb-4">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center  pt-4 space-y-3 sm:space-y-0">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-4 space-y-3 sm:space-y-0">
           <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
             <span className="text-sm font-medium text-gray-600">
               Best Matches
@@ -125,18 +132,21 @@ const FlightResults = ({ flights, loading }) => {
               {flights.length} flights
             </div>
           </div>
-          <div className="text-sm text-gray-700">
+          <div className="text-sm text-gray-700 flex items-center">
+            <Tag size={16} className="mr-2 text-blue-500 hidden md:block" />
             Cheapest from{" "}
-            <span className="font-semibold text-blue-600">
+            <span className="font-semibold text-blue-600 ml-1">
               ${sortedFlights[0].price}
             </span>
           </div>
         </div>
 
-        <div className="flex justify-end items-center px-4 mt-3">
-          <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-2 w-full sm:w-48">
-            <span className="text-sm text-gray-600">Sort by:</span>
-            <div className="relative w-full">
+        <div className="flex justify-end items-center    mt-3">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-3  w-full sm:w-48">
+            <span className="text-sm text-gray-600 whitespace-nowrap">
+              Sort by:
+            </span>
+            <div className="relative  w-full">
               <select
                 value={sortCriteria}
                 onChange={(e) => setSortCriteria(e.target.value)}
@@ -212,10 +222,18 @@ const FlightResults = ({ flights, loading }) => {
       {visibleFlights < sortedFlights.length && (
         <div className="flex justify-center mt-4">
           <button
-            onClick={() => setVisibleFlights(visibleFlights + 20)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            onClick={() => setVisibleFlights(visibleFlights + 10)}
+            className="flex items-center space-x-2 px-5 py-2.5 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg group"
           >
-            View more flights{" "}
+            <MoreHorizontal
+              size={20}
+              className="group-hover:animate-pulse text-white"
+            />
+            <span className="font-medium">View more flights</span>
+            <ArrowRight
+              size={18}
+              className="ml-1 transition-transform group-hover:translate-x-1"
+            />
           </button>
         </div>
       )}

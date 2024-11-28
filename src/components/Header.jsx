@@ -14,27 +14,27 @@ import {
 const navigationItems = [
   {
     href: "#",
-    icon: <Luggage  />,
+    icon: <Luggage />,
     label: "Travel",
   },
   {
     href: "#",
-    icon: <Compass  />,
+    icon: <Compass />,
     label: "Explore",
   },
   {
     href: "#",
-    icon: <Plane  />,
+    icon: <Plane />,
     label: "Flights",
   },
   {
     href: "#",
-    icon: <BedDouble  />,
+    icon: <BedDouble />,
     label: "Hotels",
   },
   {
     href: "#",
-    icon: <Home  />,
+    icon: <Home />,
     label: "Holiday Rentals",
   },
 ];
