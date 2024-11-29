@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Search, Plus, Trash2, X } from "lucide-react";
+import { Search, Plus, Trash2 } from "lucide-react";
 const API_KEY = import.meta.env.VITE_RAPIDAPI_KEY;
 
 const SearchForm = ({ onSearch }) => {
@@ -226,7 +226,7 @@ const SearchForm = ({ onSearch }) => {
           {(tripType === "round" || tripType === "one-way") && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               <div className="flex flex-col">
-                <label className="text-sm font-medium text-gray-500 mb-2">
+                <label className="text-xs font-semibold text-gray-600 mb-2">
                   From
                 </label>
                 <select
@@ -247,7 +247,7 @@ const SearchForm = ({ onSearch }) => {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-sm font-medium text-gray-500 mb-2">
+                <label className="text-xs font-semibold text-gray-600 mb-2">
                   To
                 </label>
                 <select
@@ -268,7 +268,7 @@ const SearchForm = ({ onSearch }) => {
               </div>
 
               <div className="flex flex-col">
-                <label className="text-sm font-medium text-gray-500 mb-2">
+                <label className="text-xs font-semibold text-gray-600 mb-2">
                   Departure
                 </label>
                 <input
@@ -281,7 +281,7 @@ const SearchForm = ({ onSearch }) => {
 
               {tripType === "round" && (
                 <div className="flex flex-col">
-                  <label className="text-sm font-medium  text-gray-500 mb-2">
+                  <label className="text-xs font-semibold text-gray-600 mb-2">
                     Return
                   </label>
                   <input
@@ -300,10 +300,10 @@ const SearchForm = ({ onSearch }) => {
               {multiCityLegs.map((leg, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-1 sm:grid-cols-4 gap-4 items-center"
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-4 relative"
                 >
                   <div className="flex flex-col">
-                    <label className="text-sm font-medium text-gray-500 mb-2">
+                    <label className="text-xs font-semibold text-gray-600 mb-2">
                       From
                     </label>
                     <select
@@ -324,7 +324,7 @@ const SearchForm = ({ onSearch }) => {
                   </div>
 
                   <div className="flex flex-col">
-                    <label className="text-sm font-medium text-gray-500 mb-2">
+                    <label className="text-xs font-semibold text-gray-600 mb-2">
                       To
                     </label>
                     <select
@@ -344,9 +344,9 @@ const SearchForm = ({ onSearch }) => {
                     </select>
                   </div>
 
-                  <div className="flex flex-col">
-                    <label className="text-sm font-medium text-gray-500 mb-2">
-                      Departure
+                  <div className="flex flex-col relative">
+                    <label className="text-xs font-semibold text-gray-600 mb-2">
+                      Departure Date
                     </label>
                     <input
                       type="date"
@@ -356,28 +356,26 @@ const SearchForm = ({ onSearch }) => {
                       required
                       className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     />
-                  </div>
 
-                  {multiCityLegs.length > 1 && (
-                    <div className="flex justify-center md:justify-start mt-5   ">
+                    {multiCityLegs.length > 1 && (
                       <button
                         type="button"
                         onClick={() => removeMultiCityLeg(index)}
-                        className="text-gray-500 hover:text-gray-700"
+                        className="absolute top-0 right-0 text-red-500 hover:text-red-700"
                       >
-                        <X className="w-5 h-5" />
+                        <Trash2 className="w-4 h-4" />
                       </button>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
               ))}
 
               {multiCityLegs.length < 5 && (
-                <div className="flex justify-start mt-4">
+                <div className="flex justify-center mt-4">
                   <button
                     type="button"
                     onClick={addMultiCityLeg}
-                    className="flex items-center font-medium text-blue-600 hover:text-blue-800 text-sm"
+                    className="flex items-center text-blue-600 hover:text-blue-800 text-sm"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     Add Flight

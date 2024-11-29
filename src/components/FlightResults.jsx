@@ -38,7 +38,7 @@ const calculateFlightDuration = (departureTime, arrivalTime) => {
 };
 const FlightResults = ({ flights, loading }) => {
   const [sortCriteria, setSortCriteria] = useState("best");
-  const [visibleFlights, setVisibleFlights] = useState(20);
+  const [visibleFlights, setVisibleFlights] = useState(6);
 
   const sortOptions = [
     { value: "best", label: "Best" },
@@ -172,7 +172,7 @@ const FlightResults = ({ flights, loading }) => {
             key={index}
             className="border rounded-lg hover:shadow-md transition-shadow cursor-pointer"
           >
-            <div className="p-4 grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-4 items-center">
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-16 items-center relative">
               <div className="flex items-center space-x-3">
                 <img
                   src={flight.airlineLogo}
@@ -182,7 +182,7 @@ const FlightResults = ({ flights, loading }) => {
                 <span className="text-sm text-gray-700">{flight.airline}</span>
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col ">
                 <span className="font-medium">
                   {formatTime(flight.departureTime)} -{" "}
                   {formatTime(flight.arrivalTime)}
@@ -208,7 +208,7 @@ const FlightResults = ({ flights, loading }) => {
                 )}
               </div>
 
-              <div className="flex flex-col items-start sm:items-end">
+              <div className="flex flex-col items-start sm:items-end sm:relative sm:top-0 absolute top-4 right-5">
                 <span className="text-lg font-semibold text-blue-600">
                   ${flight.price}
                 </span>
